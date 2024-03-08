@@ -1,0 +1,29 @@
+.content{
+    padding: 25px 0;
+}
+
+button{
+    margin-right: 10px;
+}
+
+tr{
+    vertical-align: middle;
+}
+
+h1{
+    color: black
+}
+
+.addAndSearch{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search{
+    display: flex
+}
+
+.addAndSearch input{
+    max-width: 150px;
+}

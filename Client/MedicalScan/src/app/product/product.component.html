@@ -1,0 +1,200 @@
+<div class="content">
+  <!-- Button trigger modal -->
+  <div class="addAndSearch mb-3">
+    <button
+      type="button"
+      class="btn btn-sm btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#newModal"
+    >
+      New product
+    </button>
+    <div class="search">
+      <input
+        [(ngModel)]="id"
+        class="form-control form-control-sm me-2"
+        type="search"
+        placeholder="Search by ID"
+        aria-label="Search"
+      />
+      <button
+        class="btn btn-sm btn-outline-success"
+        type="submit"
+        (click)="getProduct()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="newModal"
+    tabindex="-1"
+    aria-labelledby="newModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="newModalLabel">Add new product</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <input
+            [(ngModel)]="newProduct.name"
+            class="form-control mb-3"
+            type="text"
+            placeholder="Name"
+          />
+          <input
+            [(ngModel)]="newProduct.description"
+            class="form-control mb-3"
+            type="text"
+            placeholder="Description"
+          />
+          <input
+            [(ngModel)]="newProduct.price"
+            class="form-control mb-3"
+            type="text"
+            placeholder="Price"
+          />
+          <input
+            [(ngModel)]="newProduct.quantity"
+            class="form-control mb-3"
+            type="text"
+            placeholder="Quantity"
+          />
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#newModal"
+            (click)="addProduct()"
+          >
+            Add product
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <th scope="row">{{ p.id }}</th>
+        <td>{{ p.name }}</td>
+        <td>{{ p.description }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.quantity }}</td>
+        <td>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-sm btn-warning"
+            data-bs-toggle="modal"
+            data-bs-target="#updateModal"
+            (click)="startEdit(p)"
+          >
+            Edit
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="updateModal"
+            tabindex="-1"
+            aria-labelledby="updateModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="updateModalLabel">
+                    Update product
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <input
+                    [(ngModel)]="selectedProduct.name"
+                    class="form-control mb-3"
+                    type="text"
+                    placeholder="Name"
+                  />
+                  <input
+                    [(ngModel)]="selectedProduct.description"
+                    class="form-control mb-3"
+                    type="text"
+                    placeholder="Description"
+                  />
+                  <input
+                    [(ngModel)]="selectedProduct.price"
+                    class="form-control mb-3"
+                    type="text"
+                    placeholder="Price"
+                  />
+                  <input
+                    [(ngModel)]="selectedProduct.quantity"
+                    class="form-control mb-3"
+                    type="text"
+                    placeholder="Quantity"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#updateModal"
+                    (click)="updateProduct()"
+                  >
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button (click)="deletProduct(p)" class="btn btn-sm btn-danger">
+            X
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
